@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import getCabins from "../services/mockAsyncService"
+import Item from './Item';
 
 function ItemListContainer() {
+  const [cabins, setCabins]= useState([]);
+
+  useEffect(()=> {
+    getCabins().then((respuesta) => {
+      console.log(respuesta);
+      setCabins(respuesta);
+    });
+  },[])
+  
   return (
     <div>
-        <h1>Bienvenido a Cabañas App</h1>
+        {cabins.map((cabin) => (
+          <Item
+            key={cabin.id}
+            title={cabin.title}
+            imgurl={cabin.imgurl}
+            description={cabin.description}
+            city={cabin.city}
+            price={cabin.price}
+          />
+          ))}
     </div>
   )
 }
