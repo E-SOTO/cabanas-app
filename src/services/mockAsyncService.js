@@ -8,4 +8,14 @@ function getCabins(){
     });
 }
 
+export function getOneCabin(){
+    return new Promise((resolve,reject) =>{
+        setTimeout(() => {
+            resolve(cabins[0]);
+        }, 2000);
+    });
+}
+
+
+
 export default getCabins;
