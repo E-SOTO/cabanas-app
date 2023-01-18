@@ -16,6 +16,7 @@ function ItemDetailContainer() {
       <div>
         <Item
               key={cabin.id}
+              id={cabin.id}
               title={cabin.title}
               imgurl={cabin.imgurl}
               description={cabin.description}

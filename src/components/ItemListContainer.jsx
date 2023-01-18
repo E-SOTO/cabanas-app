@@ -11,12 +11,13 @@ function ItemListContainer() {
       setCabins(respuesta);
     });
   },[])
-  
+
   return (
     <div>
         {cabins.map((cabin) => (
           <Item
             key={cabin.id}
+            id={cabin.id}
             title={cabin.title}
             imgurl={cabin.imgurl}
             description={cabin.description}
