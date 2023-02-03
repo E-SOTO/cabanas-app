@@ -1,17 +1,33 @@
 import {createContext, useState } from "react";
+import Swal from "sweetalert2";
+import withReactContent from 'sweetalert2-react-content';
+import Item from "../components/Item";
 
 export const cartContext = createContext();
 
 export function CartContextProvider(props){
     const [cart,setCart] = useState([]);
     /* const [total,setTotal] = useState(0); */
+    const MySwal = withReactContent(Swal)
 
     function addCabin(cabin){
-        setCart([...cart,cabin]);
+
+        const isInCart =cart.some(cabinInCart => cabinInCart.id === cabin.id)
+        if(isInCart){
+            let newCart= [...cart];
+            let index = cart.findIndex(cabinInCart => cabinInCart.id === cabin.id)
+            MySwal.fire({
+                title:'Oops',
+                text:`La cabaña ya se encuentra en el carrito`,
+                icon:'warning'
+              });
+        }else{
+            setCart([...cart,cabin]);
+        }
     }
 
-    function removeCabin(){
-
+    function removeCabin(id){
+        setCart(cart.pop());
     }
 
     function clearCart(){
