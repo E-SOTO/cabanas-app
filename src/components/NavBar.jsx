@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import CartWidget from './CartWidget'
 
 function NavBar() {
@@ -7,9 +8,9 @@ function NavBar() {
 
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             <img src="./assets/cabanaAppLogo.png" alt="Bootstrap" width="90" height="85"/>
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -24,22 +25,24 @@ function NavBar() {
           <div className="collapse navbar-collapse d-flex flex-sm-column flex-md-column flex-lg-row justify-content-evenly" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
+                <Link className="nav-link active" aria-current="page" to="/">
+                  Inicio
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
-                </a>
+                <Link className="nav-link" to="/como-funciona">
+                  ¿Cómo funciona?
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
-                </a>
+                <Link className="nav-link" to="/experiencia-cabins">
+                  Experiencia Cabins
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled">Disabled</a>
+                <Link className="nav-link" to="/destinos">
+                  Destinos
+                </Link>
               </li>
             </ul>
             <CartWidget/>

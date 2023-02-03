@@ -13,7 +13,7 @@ function ItemListContainer() {
   },[])
 
   return (
-    <div>
+    <div className='row'>
         {cabins.map((cabin) => (
           <Item
             key={cabin.id}
