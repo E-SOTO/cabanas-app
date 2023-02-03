@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from 'react'
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import {getOneCabin} from "../services/mockAsyncService"
-import Item from './Item';
+import { cartContext } from '../storage/cartContext';
 import ItemCount from './ItemCount';
 import ItemDetails from './ItemDetails';
 
 function ItemDetailContainer() {
     const [cabin, setCabin]= useState([]);
-    
     let { itemid }=useParams();
+    const MySwal = withReactContent(Swal)
 
-    function handleAddToCart(){
-      Swal.fire(
-        '¡Excelente!',
-        `Agregaste noche en ${cabin.title} al carrito`,
-        'success'
-        
-      );
-      
+    const {addCabin } = useContext(cartContext);
+
+    const { cart } = useContext(cartContext);
+
+
+    function handleAddToCart(count){
+      console.log("Hola");
+      MySwal.fire({
+        title:'¡Excelente!',
+        text:`Agregaste ${count} noche(s) en ${cabin.title} al carrito`,
+        icon:'success'
+      });
+      cabin.count=count
+      addCabin(cabin);
     }
 
     useEffect(()=> {
@@ -44,7 +52,7 @@ function ItemDetailContainer() {
                 city={cabin.city}
                 price={cabin.price}
               />
-              <ItemCount />
+              <ItemCount onAddToCart={handleAddToCart}/>
             </div>
           </div>
         </div>

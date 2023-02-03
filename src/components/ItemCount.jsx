@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtonChild from "./ButtonChild";
 
-function ItemCount() {
+function ItemCount({onAddToCart}) {
     const[count,setCount]=useState(0);
 
     function handleAdd(){
@@ -22,7 +22,7 @@ function ItemCount() {
                 <ButtonChild onClick={handleAdd} className="btn btn-primary">+</ButtonChild>
             </div>
             <div class="d-flex justify-content-center">
-                <ButtonChild className="btn btn-primary">Agregar al carrito</ButtonChild>
+                <ButtonChild onClick={() => onAddToCart(count)} className="btn btn-primary">Agregar al carrito</ButtonChild>
             </div>
         </div>
     );
