@@ -7,6 +7,7 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import NotFoundPage from './components/NotFoundPage';
 import DestinationListContainer from './components/DestinationListContainer';
 import { CartContextProvider } from './storage/cartContext';
+import CartContainer from './components/CartContainer/CartContainer';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route path='/item/:itemid' element={ <ItemDetailContainer/>} />
               <Route path='/destinos' element={<DestinationListContainer/>}/>
               <Route path='/destinos/:destinationTitle' element={undefined}/>
+              <Route path='/cart' element={<CartContainer/>}/>
               <Route path="*" element={<NotFoundPage/>} />
             </Routes>
         </BrowserRouter>

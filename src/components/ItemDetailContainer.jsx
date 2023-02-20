@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {getOneCabin} from "../services/mockAsyncService"
 import { cartContext } from '../storage/cartContext';
+import ButtonChild from './ButtonChild';
 import ItemCount from './ItemCount';
 import ItemDetails from './ItemDetails';
 
 function ItemDetailContainer() {
     const [cabin, setCabin]= useState([]);
+    const [isInCart,setIsInCart] = useState(false);
+
     let { itemid }=useParams();
     const MySwal = withReactContent(Swal)
 
-    const {addCabin } = useContext(cartContext);
+    const {addCabin, removeCabin } = useContext(cartContext);
 
     const { cart } = useContext(cartContext);
 
 
     function handleAddToCart(count){
-      console.log("Hola");
+      setIsInCart(true);
       MySwal.fire({
         title:'¡Excelente!',
         text:`Agregaste ${count} noche(s) en ${cabin.title} al carrito`,
@@ -53,6 +56,11 @@ function ItemDetailContainer() {
                 price={cabin.price}
               />
               <ItemCount onAddToCart={handleAddToCart}/>
+              <Link to ="/cart">
+                <ButtonChild>Ir al carrito</ButtonChild>
+              </Link>
+              <button onClick={() =>removeCabin(cabin.id)}>Elimanr Item</button>
+              <button>Vaciar Carrito</button>
             </div>
           </div>
         </div>
