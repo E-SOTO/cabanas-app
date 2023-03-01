@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import {getOneCabin} from "../services/mockAsyncService"
+import {getOneCabin} from "../services/firebase"
 import { cartContext } from '../storage/cartContext';
 import ButtonChild from './ButtonChild';
 import ItemCount from './ItemCount';

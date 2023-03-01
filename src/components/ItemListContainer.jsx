@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import getCabins from "../services/mockAsyncService"
+import { getCabins } from "../services/firebase"
 import Item from './Item';
 
 function ItemListContainer() {
